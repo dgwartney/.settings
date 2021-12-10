@@ -1,16 +1,5 @@
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/davidgwartney/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/Users/davidgwartney/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/davidgwartney/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="/Users/davidgwartney/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# Suppress the Z shell warning on mac
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Enable command line editing with VI
 set -o vi
@@ -42,6 +31,7 @@ export GIT_WORKING=$HOME/git_working
 export GITS=$HOME/git
 alias gitw="cd $GIT_WORKING"
 alias gits="cd $GITS"
+alias resume="cd $GITS/private"
 
 export PATH=/usr/local/bin:$PATH
 
@@ -68,40 +58,21 @@ function spoon() {
 #
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-#
-# Help function that activates the python
-# virtual environment in the current working
-# directory
-function pact() {
-  typeset -r version=$1
-  if [ "$version" == "2" ]
-  then
-    typeset -r python_dir="python"
-  else
-    typeset -r python_dir="python3"
-  fi
 
-  if [ -d "./$python_dir" ]
-  then
-    . $python_dir/bin/activate
-  elif [ -d $HOME/$python_dir ] 
-  then
-    . $HOME/$python_dir/bin/activate
-  else
-    :
-  fi
-
-  return 0
-}
-
-alias py="pact 2"
-alias py2="pact 2"
-alias py3="pact 3"
-
-# added by Anaconda3 2.3.0 installer
-export PATH="/anaconda/bin:$PATH"
-
-# particle
-export PATH="$HOME/bin:$PATH"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 
+export PATH="$HOME/.cargo/bin:$PATH"
