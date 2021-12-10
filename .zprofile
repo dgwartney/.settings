@@ -1,4 +1,5 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Suppress the Z shell warning on mac
 # Ignore annoying message about deprecation of bash shell on Mac
 export BASH_SILENCE_DEPRECATION_WARNING=1
