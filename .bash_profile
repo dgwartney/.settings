@@ -1,37 +1,28 @@
 # Suppress the Z shell warning on mac
+# Ignore annoying message about deprecation of bash shell on Mac
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Enable command line editing with VI
 set -o vi
 
 #
-# EC2 Tools
+# MySQL Configuration
 #
-export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.6.12.2
-export PATH=$PATH:$EC2_HOME/bin
+MYSQL_HOME=/usr/local/mysql
+export PATH=$PATH:$MYSQL_HOME/bin
 
-[[ -r $HOME/.ec2-credentials ]] && source $HOME/.ec2-credentials
-
-#
-# CloudWatch Tools
-#
-export AWS_CLOUDWATCH_HOME=/usr/local/ec2/CloudWatch-1.0.20.0
-export PATH=$PATH:$AWS_CLOUDWATCH_HOME/bin
-export AWS_CLOUDWATCH_URL=http://monitoring.us-west-1.amazonaws.com/
-export AWS_CREDENTIAL_FILE=$HOME/.cloudwatch-credentials
 
 #
 # Alias
 #
 
 #
-# Shortcuts to GIT repositories
+# Short cuts for GIT commands
 #
-export GIT_WORKING=$HOME/git_working
 export GITS=$HOME/git
-alias gitw="cd $GIT_WORKING"
 alias gits="cd $GITS"
 alias resume="cd $GITS/private"
+alias git-log='git log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
 
 export PATH=/usr/local/bin:$PATH
 
@@ -58,6 +49,7 @@ function spoon() {
 #
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+<<<<<<< HEAD
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -73,6 +65,21 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+=======
 
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
