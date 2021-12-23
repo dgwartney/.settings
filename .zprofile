@@ -24,6 +24,7 @@ export PATH=$PATH:$MYSQL_HOME/bin
 export GITS=$HOME/git
 alias gits="cd $GITS"
 alias resume="cd $GITS/private"
+alias flask-rest="cd $GITS/flask-rest"
 alias git-log='git log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
 
 export PATH=/usr/local/bin:$PATH
