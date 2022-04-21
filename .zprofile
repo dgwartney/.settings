@@ -26,7 +26,17 @@ alias gits="cd $GITS"
 
 alias resume="cd $GITS/private"
 alias git-log='git log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+alias nlx-services="cd $GITS/nlx-lambda-services"
 alias nycta="cd $GITS/aws-lambda-nycta"
+alias ual="cd $GITS/aws-lambda-united"
+alias peak="cd $GITS/aws-lambda-peaknatural"
+alias wma="cd $GITS/aws-lambda-wma"
+alias weather="cd $GITS/aws-lambda-weather"
+alias sales-force="cd $GITS/aws-lambda-sales-force"
+alias zendesk="cd $GITS/aws-lambda-zendesk"
+alias paceline="cd $GITS/aws-lambda-paceline"
+alias empire="cd $GITS/aws-outbound-calling"
+alias connect-air="cd $GITS/aws-lambda-connect-air"
 
 # Git Repositories
 alias flask-rest="cd $GITS/flask-rest"
@@ -49,6 +59,16 @@ function spoon() {
  pushd /Applications/data-integration > /dev/null 2>&1
  ./spoon.sh > /dev/null 2>&1 &
  popd > /dev/null 2>&1
+}
+
+function nlx_aws() {
+  command=$1
+
+}
+
+function my-address() {
+	echo "ipv4: $(curl -s -4 icanhazip.com)"
+	echo "ipv6: $(curl -s -6 icanhazip.com)"
 }
 
 
