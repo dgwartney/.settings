@@ -37,6 +37,9 @@ alias zendesk="cd $GITS/aws-lambda-zendesk"
 alias paceline="cd $GITS/aws-lambda-paceline"
 alias empire="cd $GITS/aws-outbound-calling"
 alias connect-air="cd $GITS/aws-lambda-connect-air"
+alias free-switch="cd $GITS/nlx-freeswitch"
+alias alice="cd $GITS/aws-lambda-alice-platform"
+alias nlx-pinpoint="cd $GITS/nlx-lambda-services/aws-lambda-pinpoint-services"
 
 # Git Repositories
 alias flask-rest="cd $GITS/flask-rest"
@@ -67,8 +70,12 @@ function nlx_aws() {
 }
 
 function my-address() {
-	echo "ipv4: $(curl -s -4 icanhazip.com)"
-	echo "ipv6: $(curl -s -6 icanhazip.com)"
+  echo "ipv4: $(curl -s -4 icanhazip.com)"
+  echo "ipv6: $(curl -s -6 icanhazip.com)"
+}
+
+function one-p() {
+  pbcopy < ~/.one-password 
 }
 
 
