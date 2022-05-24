@@ -24,22 +24,28 @@ export PATH=$PATH:$MYSQL_HOME/bin
 export GITS=$HOME/git
 alias gits="cd $GITS"
 
-alias resume="cd $GITS/private"
-alias git-log='git log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+#
+# Git Respositories
+#
+alias alice="cd $GITS/aws-lambda-alice-platform"
+alias connect-air="cd $GITS/aws-lambda-connect-air"
+alias empire="cd $GITS/aws-outbound-calling"
+alias free-switch="cd $GITS/nlx-freeswitch"
+alias nlx-freeswitch="cd $GITS/nlx-freeswitch-pbx"
+alias nlx-pinpoint="cd $GITS/nlx-lambda-services/aws-lambda-pinpoint-services"
 alias nlx-services="cd $GITS/nlx-lambda-services"
 alias nycta="cd $GITS/aws-lambda-nycta"
-alias ual="cd $GITS/aws-lambda-united"
-alias peak="cd $GITS/aws-lambda-peaknatural"
-alias wma="cd $GITS/aws-lambda-wma"
-alias weather="cd $GITS/aws-lambda-weather"
-alias sales-force="cd $GITS/aws-lambda-sales-force"
-alias zendesk="cd $GITS/aws-lambda-zendesk"
 alias paceline="cd $GITS/aws-lambda-paceline"
-alias empire="cd $GITS/aws-outbound-calling"
-alias connect-air="cd $GITS/aws-lambda-connect-air"
-alias free-switch="cd $GITS/nlx-freeswitch"
-alias alice="cd $GITS/aws-lambda-alice-platform"
-alias nlx-pinpoint="cd $GITS/nlx-lambda-services/aws-lambda-pinpoint-services"
+alias peak="cd $GITS/aws-lambda-peaknatural"
+alias resume="cd $GITS/private"
+alias sales-force="cd $GITS/aws-lambda-sales-force"
+alias weather="cd $GITS/aws-lambda-weather"
+alias wma="cd $GITS/aws-lambda-wma"
+alias ual="cd $GITS/aws-lambda-united"
+alias zeel="cd $GITS/aws-lambda-zeel"
+alias zendesk="cd $GITS/aws-lambda-zendesk"
+
+alias git-log='git log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
 
 # Git Repositories
 alias flask-rest="cd $GITS/flask-rest"
