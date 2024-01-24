@@ -1,4 +1,4 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+#eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Suppress the Z shell warning on mac
 # Ignore annoying message about deprecation of bash shell on Mac
@@ -18,6 +18,14 @@ export PATH=$PATH:$MYSQL_HOME/bin
 # Docker
 #
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+
+#
+# Lang-chain
+#
+function lang-chain() {
+  conda activate lang-chain
+  cd $HOME/git/lang-chain
+}
 
 
 #
@@ -59,6 +67,18 @@ function vpc-dependencies() {
 #
 export GITS=$HOME/git
 alias gits="cd $GITS"
+alias balsam="cd $GITS/kore-balsam-hill"
+alias cass="cd $GITS/kore-cass-information-systems"
+alias calend="cd $GITS/kore-calendly"
+alias columbia="cd $GITS/kore-columbia"
+alias ebay="cd $GITS/kore-ebay"
+alias hunter="cd $GITS/hunter-douglas"
+alias kretail="cd $GITS/kore-retail"
+alias kz="cd $GITS/kore-zendesk-agent-assist"
+alias lenovo="cd $GITS/kore-lenovo"
+alias ring="cd $GITS/kore-ring-central"
+alias roku="cd $GITS/kore-roku"
+alias twitch="cd $GITS/kore-twitch"
 
 alias git-grep="git rev-list --all | xargs git grep -F"
 
@@ -73,6 +93,8 @@ alias git-grep="git rev-list --all | xargs git grep -F"
 #
 # Git Respositories
 #
+
+
 
 function clock() {
    while true; do printf '%s\r' "$(date)" ; sleep 0 ; done
@@ -125,24 +147,16 @@ function use-git() {
 #   fi
 }
 
+[ -f $HOME/.openai ] && source $HOME/.openai
+
 
 #
 # Ruby Version Manager
 #
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+export PATH=/opt/homebrew/anaconda3/bin:$PATH
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
