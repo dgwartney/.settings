@@ -19,6 +19,11 @@ export PATH=$PATH:$MYSQL_HOME/bin
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 ##
+#  API data.gov
+#
+[ -r $HOME/.api.data.gov ] && source $HOME/.api.data.gov
+
+##
 # Anthropic API Key
 # 
 [ -r $HOME/.anthropic ] && source $HOME/.anthropic
@@ -37,12 +42,10 @@ function lang-chain() {
 }
 
 
-#
-# Alias
-#
-#
-#
-
+##
+## Alias
+##
+##
 
 #
 # AWS

@@ -14,6 +14,11 @@ set spell
 set spelllang=en_us
 
 " Show existing tab with 4 spaces width
+" ]s - Move to the next misspelled word
+" [s - Move to the previous misspelled word
+" z= - See spelling suggestions for the word under cursor
+" zg - Add the word under cursor to your spell file (mark as correct)
+" zw - Mark the word under cursor as incorrect
 set autoindent
 
 set ruler
