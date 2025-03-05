@@ -1,0 +1,6 @@
+Host github.com-jdg
+  Hostname github.com
+  IdentityFile ~/.ssh/jdg-kore
+Host github.com-kore
+  Hostname github.com
+  IdentityFile ~/.ssh/github-kore_rsa
