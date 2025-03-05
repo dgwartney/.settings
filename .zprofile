@@ -1,4 +1,3 @@
-#eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Suppress the Z shell warning on mac
 # Ignore annoying message about deprecation of bash shell on Mac
@@ -18,6 +17,16 @@ export PATH=$PATH:$MYSQL_HOME/bin
 # Docker
 #
 export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
+
+##
+# Anthropic API Key
+# 
+[ -r $HOME/.anthropic ] && source $HOME/.anthropic
+
+##
+# Deepgram API Key
+#
+[ -r $HOME/.deepgram ] && source $HOME/.deepgram
 
 #
 # Lang-chain
@@ -39,6 +48,8 @@ function lang-chain() {
 # AWS
 #
 alias aws-profiles="cat $HOME/.aws/credentials | grep -e '^\[' | tr -d '[]' | sort"
+
+export AWS_DEFAULT_REGION=us-east-1
 
 function vpc-dependencies() {
   if ( $# -ne 1 )
@@ -67,18 +78,44 @@ function vpc-dependencies() {
 #
 export GITS=$HOME/git
 alias gits="cd $GITS"
+alias ae="cd $GITS/kore-app-examples"
+alias ai4w="cd $GITS/kore-ai4w-integrations"
+alias allegion="cd $GITS/kore-allegion"
 alias balsam="cd $GITS/kore-balsam-hill"
+alias bank="cd $GITS/kore-bank-demo"
+alias bfs="cd $GITS/kore-builders-first-source"
+alias broad="cd $GITS/kore-broadcom"
+alias caesars="cd $GITS/kore-caesars"
 alias cass="cd $GITS/kore-cass-information-systems"
 alias calend="cd $GITS/kore-calendly"
+alias ccai="cd $GITS/kore-ccai-guide"
+alias chat="cd $GITS/chat-server"
 alias columbia="cd $GITS/kore-columbia"
 alias ebay="cd $GITS/kore-ebay"
+alias eqx="cd $GITS/kore-equinix-bot-kit"
+alias five9="cd $GITS/kore-five9-botkit"
+alias gse="cd $GITS/kore-gale-se"
+alias hca="cd $GITS/kore-hca"
+alias hotel="cd $GITS/kore-hotel"
 alias hunter="cd $GITS/hunter-douglas"
+alias insur="cd $GITS/kore-va-applications/openai-agent-api"
+alias gale="cd $GITS/kore-gale-se-guide"
+alias kct="cd $GITS/kore-citi-testing"
+alias kgg="cd $GITS/kore-gale-gui"
+alias kwa="cd $GITS/kore-ai-webhook-api"
 alias kretail="cd $GITS/kore-retail"
+alias kxe="cd $GITS/kore-xo11-eval"
 alias kz="cd $GITS/kore-zendesk-agent-assist"
 alias lenovo="cd $GITS/kore-lenovo"
+alias lh="cd $GITS/kore-language-handling"
+alias mshelp="cd $GITS/kore-microsoft-help"
+alias onero="cd $GITS/kore-onero"
 alias ring="cd $GITS/kore-ring-central"
 alias roku="cd $GITS/kore-roku"
+alias s3proj="cd $GITS/kore-valvoline"
+alias snow="cd $GITS/kore-snow-virtual-agent-api"
 alias twitch="cd $GITS/kore-twitch"
+alias webp="cd $GITS/web-sdk-playground"
 
 alias git-grep="git rev-list --all | xargs git grep -F"
 
@@ -147,7 +184,17 @@ function use-git() {
 #   fi
 }
 
+# OpenAI Keys
 [ -f $HOME/.openai ] && source $HOME/.openai
+
+# Google Keys
+[ -f $HOME/.google ] && source $HOME/.google
+
+# Hugging Face
+[ -f $HOME/.hug ] && source $HOME/.hug
+#
+# Pinecone
+[ -f $HOME/.pinecone ] && source $HOME/.pinecone
 
 
 #
@@ -160,3 +207,13 @@ export PATH=/opt/homebrew/anaconda3/bin:$PATH
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# FZF
+source <(fzf --zsh)
+
+#export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+  
+
+# added by Snowflake SnowSQL installer v1.2
+export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
