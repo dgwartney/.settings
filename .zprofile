@@ -13,6 +13,10 @@ MYSQL_HOME=/usr/local/mysql
 export PATH=$PATH:$MYSQL_HOME/bin
 
 
+# User specific bin
+PATH=$PATH:$HOME/bin
+
+
 #
 # Docker
 #
@@ -22,6 +26,12 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 #  API data.gov
 #
 [ -r $HOME/.api.data.gov ] && source $HOME/.api.data.gov
+
+
+##
+#  API data.gov
+#
+[ -r $HOME/.airlabs ] && source $HOME/.airlabs
 
 ##
 # Anthropic API Key
@@ -33,6 +43,25 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 #
 [ -r $HOME/.deepgram ] && source $HOME/.deepgram
 
+##
+# Google Gemini API Key
+#
+[ -r $HOME/.gemini ] && source $HOME/.gemini
+
+##
+# OpenAI API Key
+#
+[ -r $HOME/.openai ] && source $HOME/.openai
+
+# Google Keys
+[ -f $HOME/.google ] && source $HOME/.google
+
+# Hugging Face
+[ -f $HOME/.hug ] && source $HOME/.hug
+
+# Pinecone
+[ -f $HOME/.pinecone ] && source $HOME/.pinecone
+
 #
 # Lang-chain
 #
@@ -42,10 +71,6 @@ function lang-chain() {
 }
 
 
-##
-## Alias
-##
-##
 
 #
 # AWS
@@ -76,51 +101,32 @@ function vpc-dependencies() {
   return 0;
 }
 
-#
-# Short cuts for GIT commands
-#
+##
+## Shortcuts for frequently used local GitHub repositories
+##
 export GITS=$HOME/git
+alias abl="cd $GITS/aws-bedrock-llms"
+alias audioc="cd $GITS/AudioConnector_OpenAI_RealtimeAPI"
+alias bamm="cd $GITS/bamm-bamm"
+alias bedrock="cd $GITS/aws-bedrock"
 alias gits="cd $GITS"
-alias ae="cd $GITS/kore-app-examples"
-alias ai4w="cd $GITS/kore-ai4w-integrations"
-alias allegion="cd $GITS/kore-allegion"
-alias balsam="cd $GITS/kore-balsam-hill"
-alias bank="cd $GITS/kore-bank-demo"
-alias bfs="cd $GITS/kore-builders-first-source"
-alias broad="cd $GITS/kore-broadcom"
-alias caesars="cd $GITS/kore-caesars"
-alias cass="cd $GITS/kore-cass-information-systems"
-alias calend="cd $GITS/kore-calendly"
-alias ccai="cd $GITS/kore-ccai-guide"
-alias chat="cd $GITS/chat-server"
-alias columbia="cd $GITS/kore-columbia"
-alias ebay="cd $GITS/kore-ebay"
-alias eqx="cd $GITS/kore-equinix-bot-kit"
-alias five9="cd $GITS/kore-five9-botkit"
-alias gse="cd $GITS/kore-gale-se"
-alias hca="cd $GITS/kore-hca"
-alias hotel="cd $GITS/kore-hotel"
-alias hunter="cd $GITS/hunter-douglas"
-alias insur="cd $GITS/kore-va-applications/openai-agent-api"
-alias gale="cd $GITS/kore-gale-se-guide"
-alias kct="cd $GITS/kore-citi-testing"
-alias kgg="cd $GITS/kore-gale-gui"
-alias kwa="cd $GITS/kore-ai-webhook-api"
-alias kretail="cd $GITS/kore-retail"
-alias kxe="cd $GITS/kore-xo11-eval"
-alias kz="cd $GITS/kore-zendesk-agent-assist"
-alias lenovo="cd $GITS/kore-lenovo"
-alias lh="cd $GITS/kore-language-handling"
-alias mshelp="cd $GITS/kore-microsoft-help"
-alias onero="cd $GITS/kore-onero"
-alias ring="cd $GITS/kore-ring-central"
-alias roku="cd $GITS/kore-roku"
-alias s3proj="cd $GITS/kore-valvoline"
-alias snow="cd $GITS/kore-snow-virtual-agent-api"
-alias twitch="cd $GITS/kore-twitch"
-alias webp="cd $GITS/web-sdk-playground"
-
 alias git-grep="git rev-list --all | xargs git grep -F"
+alias gpp="cd $GITS/genesys-platform-python"
+alias ghotel="cd $GITS/genesys-hospitality"
+alias gtlr="cd $GITS/genesys-technical-learning-resources"
+alias gutil="cd $GITS/genesys-utilities"
+alias gt="cd $GITS/genesys-guides-tutorial"
+alias guides="cd $GITS/genesys-guides-v2"
+alias idg="cd $GITS/genesys-idioms-guide"
+alias mt="cd $GITS/genesys-multi-intent"
+alias papi="cd $GITS/genesys-platform-api-tutorial"
+alias roadmap="cd $GITS/genesys-roadmap"
+alias sb="cd $GITS/genesys-smile-brands"
+alias socal="cd $GITS/genesys-socal-gas-co"
+alias tah="cd $GITS/travel-and-hospitality-race-kit"
+alias va="cd $GITS/voice-assistant"
+
+
 
 # Remove local branches
 # git branch --merged main | grep -v "main" | xargs -n 1 git branch -d
@@ -130,32 +136,19 @@ alias git-grep="git rev-list --all | xargs git grep -F"
 #
 # git config --global fetch.prune true
 
-#
-# Git Respositories
-#
-
-
 
 function clock() {
    while true; do printf '%s\r' "$(date)" ; sleep 0 ; done
 }
 
-alias git-log='git log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+alias git-log='git log --graph --abbrev-commit --decorate --all --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)"'
 
-# Git Repositories
-alias flask-rest="cd $GITS/flask-rest"
 
 export PATH=/usr/local/bin:$PATH
 
 #
 # NPM repositories
 #
-
-#
-# Matlab
-#
-alias matlab="/Applications/MATLAB_R2015a.app/bin/matlab -nodesktop"
-
 
 #
 # Data Integration
@@ -187,17 +180,16 @@ function use-git() {
 #   fi
 }
 
-# OpenAI Keys
-[ -f $HOME/.openai ] && source $HOME/.openai
-
-# Google Keys
-[ -f $HOME/.google ] && source $HOME/.google
-
-# Hugging Face
-[ -f $HOME/.hug ] && source $HOME/.hug
 #
-# Pinecone
-[ -f $HOME/.pinecone ] && source $HOME/.pinecone
+# Dart
+#
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+
+#
+# Flutter
+#
+export PATH=$PATH:$HOME/Applications/flutter
 
 
 #
@@ -205,13 +197,13 @@ function use-git() {
 #
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-export PATH=/opt/homebrew/anaconda3/bin:$PATH
+#export PATH=/opt/homebrew/anaconda3/bin:$PATH
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # FZF
-source <(fzf --zsh)
+# source <(fzf --zsh)
 
 #export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -220,3 +212,10 @@ source <(fzf --zsh)
 
 # added by Snowflake SnowSQL installer v1.2
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
+# Setting PATH for Python 3.13
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin:${PATH}"
+export PATH
+
+

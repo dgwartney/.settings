@@ -1,6 +1,9 @@
 filetype plugin indent on
 syntax on
 
+set re=0 " Use new regular expression engine
+set redrawtime=10000 " Sets redrawtime to 10 seconds (default is 2000ms or 2 seconds)
+
 " Use spaces instead of tabs
 set expandtab
 
@@ -8,18 +11,20 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+" Show existing tab with 4 spaces width
+set autoindent
 
 " Enable spell checking
-set spell
+set nospell
 set spelllang=en_us
+set spellfile=~/.vim/spell/en.utf-8.add
 
-" Show existing tab with 4 spaces width
 " ]s - Move to the next misspelled word
 " [s - Move to the previous misspelled word
 " z= - See spelling suggestions for the word under cursor
 " zg - Add the word under cursor to your spell file (mark as correct)
 " zw - Mark the word under cursor as incorrect
-set autoindent
+"
 
 set ruler
 
@@ -28,7 +33,6 @@ if has('autocmd')
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
-set rtp+=/opt/homebrew/opt/fzf
 
 :command! Fxml % !tidy -q --input-xml true --indent yes --indent-spaces 4 %
 :command! Fjson % !jq .
