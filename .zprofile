@@ -29,7 +29,7 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 
 
 ##
-#  API data.gov
+#  API Airlabs
 #
 [ -r $HOME/.airlabs ] && source $HOME/.airlabs
 
@@ -37,6 +37,14 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 # Anthropic API Key
 # 
 [ -r $HOME/.anthropic ] && source $HOME/.anthropic
+#
+
+##
+# Aviation Stack API Key
+# 
+[ -r $HOME/.aviationstack ] && source $HOME/.aviationstack
+
+
 
 ##
 # Deepgram API Key
@@ -56,6 +64,9 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 # Google Keys
 [ -f $HOME/.google ] && source $HOME/.google
 
+# Genesys Keys
+[ -f $HOME/.genesys ] && source $HOME/.genesys
+
 # Hugging Face
 [ -f $HOME/.hug ] && source $HOME/.hug
 
@@ -70,12 +81,58 @@ function lang-chain() {
   cd $HOME/git/lang-chain
 }
 
+#
+# Document Tools
+#
+function gen-pdf() {
+  local md_file="$1"
+  local option="$2"
+  local toc_depth="$3"
 
+  if [[ -z "$md_file" ]]; then
+    echo "Usage: gen-pdf <markdown-file> [--toc [depth]]"
+    echo "Example: gen-pdf mydoc.md --toc 3"
+    return 1
+  fi
+
+  # Extract base name without extension
+  local base_name="${md_file%.md}"
+
+  # Base pandoc command
+  local cmd=(
+    pandoc "${base_name}.md"
+    -o "${base_name}.pdf"
+    --pdf-engine=xelatex
+    --variable mainfont="DejaVu Sans"
+    --variable monofont="DejaVu Sans Mono"
+    --variable geometry:margin=1in
+    --highlight-style=tango
+##    --number-sections
+  )
+
+  # Handle --toc option (with optional depth)
+  if [[ "$option" == "--toc" ]]; then
+    cmd+=(--toc)
+    # If a numeric depth is provided, add it
+    if [[ "$toc_depth" =~ ^[0-9]+$ ]]; then
+      cmd+=(--toc-depth="$toc_depth")
+    else
+      # Default to 3 if not provided or invalid
+      cmd+=(--toc-depth=3)
+    fi
+  fi
+
+  # Execute the command
+  echo "Running: ${cmd[*]}"
+  "${cmd[@]}"
+}
 
 #
 # AWS
 #
 alias aws-profiles="cat $HOME/.aws/credentials | grep -e '^\[' | tr -d '[]' | sort"
+
+alias vision-clip="uv run $HOME/git/vision-clip-generator/GoogleGenerateVC.py "
 
 export AWS_DEFAULT_REGION=us-east-1
 
@@ -111,6 +168,7 @@ alias bamm="cd $GITS/bamm-bamm"
 alias bedrock="cd $GITS/aws-bedrock"
 alias gits="cd $GITS"
 alias git-grep="git rev-list --all | xargs git grep -F"
+alias gld="cd $GITS/gloves-off-virtual-agent-demo"
 alias gpp="cd $GITS/genesys-platform-python"
 alias ghotel="cd $GITS/genesys-hospitality"
 alias gtlr="cd $GITS/genesys-technical-learning-resources"
@@ -121,12 +179,17 @@ alias idg="cd $GITS/genesys-idioms-guide"
 alias mt="cd $GITS/genesys-multi-intent"
 alias papi="cd $GITS/genesys-platform-api-tutorial"
 alias roadmap="cd $GITS/genesys-roadmap"
+alias rkt="cd $GITS/race-kits-travel"
 alias sb="cd $GITS/genesys-smile-brands"
+alias sm="cd $GITS/genesys-send-email"
 alias socal="cd $GITS/genesys-socal-gas-co"
 alias tah="cd $GITS/travel-and-hospitality-race-kit"
+alias usps="cd $GITS/genesys-usps"
 alias va="cd $GITS/voice-assistant"
-
-
+alias vav="cd $GITS/virtual-agent-vision"
+alias vision="cd $GITS/vision-clip-generator"
+alias wj="cd $GITS/genesys-westjet"
+alias zenith="cd $GITS/genesys-zenith-insurance"
 
 # Remove local branches
 # git branch --merged main | grep -v "main" | xargs -n 1 git branch -d
@@ -212,6 +275,13 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # added by Snowflake SnowSQL installer v1.2
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
+#
+# AWS Configuration
+#
+export AWS_REGION=us-east-1
+export AWS_PROFILE=NA-AI-Innovation-822233328621
+export CLAUDE_CODE_USE_BEDROCK=1 # Use AWS Bedrock inference models with Claude Code CLI, uses SSO to configure tokens
 
 # Setting PATH for Python 3.13
 # The original version is saved in .zprofile.pysave
