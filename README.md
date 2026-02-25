@@ -107,3 +107,9 @@ $ brew install --cask font-dejavu
 ```
 $ brew install poppler
 ```
+
+### CVSKIT
+
+```
+$ brew install cvskit
+```
