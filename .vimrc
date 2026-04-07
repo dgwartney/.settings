@@ -37,3 +37,15 @@ endif
 :command! Fxml % !tidy -q --input-xml true --indent yes --indent-spaces 4 %
 :command! Fjson % !jq .
 
+" autopep8
+let g:autopep8_disable_show_diff=1
+
+let g:claude_api_key = $ANTHROPIC_API_KEY 
+
+let g:claude_map_implement = "<Leader>ci"
+let g:claude_map_open_chat = "<Leader>cc"
+let g:claude_map_send_chat_message = "<C-]>"
+let g:claude_map_cancel_response = "<Leader>cx"
+
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>

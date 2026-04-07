@@ -43,6 +43,12 @@ export PATH="$PATH:/Applications/Docker.app/Contents/Resources/bin/"
 # Aviation Stack API Key
 # 
 [ -r $HOME/.aviationstack ] && source $HOME/.aviationstack
+#
+
+##
+#  Brave Search API Key
+#
+[ -r $HOME/.brave ] && source $HOME/.brave
 
 
 
@@ -82,6 +88,26 @@ function lang-chain() {
 }
 
 #
+# Send Grid
+#
+[ -f $HOME/.send-grid ] && source $HOME/.send-grid
+
+#
+# Specify a title on the MacOS terminal
+#
+function title() {
+  printf "\033]0;%s\007" "$1"
+}
+
+#
+# sound-chek
+#
+function sound-check() {
+    afplay $HOME/.local/share/sound-check/piano2.wav
+}
+
+
+#
 # Document Tools
 #
 function gen-pdf() {
@@ -106,7 +132,7 @@ function gen-pdf() {
     --variable mainfont="DejaVu Sans"
     --variable monofont="DejaVu Sans Mono"
     --variable geometry:margin=1in
-    --highlight-style=tango
+    --syntax-highlighting=tango
 ##    --number-sections
   )
 
@@ -132,9 +158,7 @@ function gen-pdf() {
 #
 alias aws-profiles="cat $HOME/.aws/credentials | grep -e '^\[' | tr -d '[]' | sort"
 
-alias vision-clip="uv run $HOME/git/vision-clip-generator/GoogleGenerateVC.py "
-
-export AWS_DEFAULT_REGION=us-east-1
+# export AWS_DEFAULT_REGION=us-east-1
 
 function vpc-dependencies() {
   if ( $# -ne 1 )
@@ -161,44 +185,10 @@ function vpc-dependencies() {
 ##
 ## Shortcuts for frequently used local GitHub repositories
 ##
+#
 export GITS=$HOME/git
-alias abl="cd $GITS/aws-bedrock-llms"
-alias audioc="cd $GITS/AudioConnector_OpenAI_RealtimeAPI"
-alias bamm="cd $GITS/bamm-bamm"
-alias bedrock="cd $GITS/aws-bedrock"
-alias gits="cd $GITS"
-alias git-grep="git rev-list --all | xargs git grep -F"
-alias gld="cd $GITS/gloves-off-virtual-agent-demo"
-alias gpp="cd $GITS/genesys-platform-python"
-alias ghotel="cd $GITS/genesys-hospitality"
-alias gtlr="cd $GITS/genesys-technical-learning-resources"
-alias gutil="cd $GITS/genesys-utilities"
-alias gt="cd $GITS/genesys-guides-tutorial"
-alias guides="cd $GITS/genesys-guides-v2"
-alias idg="cd $GITS/genesys-idioms-guide"
-alias mt="cd $GITS/genesys-multi-intent"
-alias papi="cd $GITS/genesys-platform-api-tutorial"
-alias roadmap="cd $GITS/genesys-roadmap"
-alias rkt="cd $GITS/race-kits-travel"
-alias sb="cd $GITS/genesys-smile-brands"
-alias sm="cd $GITS/genesys-send-email"
-alias socal="cd $GITS/genesys-socal-gas-co"
-alias tah="cd $GITS/travel-and-hospitality-race-kit"
-alias usps="cd $GITS/genesys-usps"
-alias va="cd $GITS/voice-assistant"
-alias vav="cd $GITS/virtual-agent-vision"
-alias vision="cd $GITS/vision-clip-generator"
-alias wj="cd $GITS/genesys-westjet"
-alias zenith="cd $GITS/genesys-zenith-insurance"
 
-# Remove local branches
-# git branch --merged main | grep -v "main" | xargs -n 1 git branch -d
-#
-# Autocorrect
-# git config --global help.autocorrect 1
-#
-# git config --global fetch.prune true
-
+[ -r $HOME/.aliases ] && source $HOME/.aliases
 
 function clock() {
    while true; do printf '%s\r' "$(date)" ; sleep 0 ; done
@@ -254,16 +244,30 @@ export PATH="$PATH":"$HOME/.pub-cache/bin"
 #
 export PATH=$PATH:$HOME/Applications/flutter
 
+#
+# Inkscape
+#
+export PATH=$PATH:/Applications/Inkscape.app/Contents/MacOS
+
+#
+# Node Version Manager
+#
+export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && . "$(brew --prefix nvm)/nvm.sh"
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && . "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
+
 
 #
 # Ruby Version Manager
 #
 [[ -r "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-#export PATH=/opt/homebrew/anaconda3/bin:$PATH
-
-
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+#
+# JetBrains Toolbox
+#
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 
 # FZF
 # source <(fzf --zsh)
@@ -279,13 +283,16 @@ export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 #
 # AWS Configuration
 #
-export AWS_REGION=us-east-1
-export AWS_PROFILE=NA-AI-Innovation-822233328621
-export CLAUDE_CODE_USE_BEDROCK=1 # Use AWS Bedrock inference models with Claude Code CLI, uses SSO to configure tokens
+#export AWS_REGION=us-east-1
+#export AWS_PROFILE=NA-AI-Innovation-822233328621
+#export CLAUDE_CODE_USE_BEDROCK=1 # Use AWS Bedrock inference models with Claude Code CLI, uses SSO to configure tokens
 
 # Setting PATH for Python 3.13
 # The original version is saved in .zprofile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin:${PATH}"
 export PATH
+
+# uv tools
+export PATH="$HOME/.local/bin:$PATH"
 
 
